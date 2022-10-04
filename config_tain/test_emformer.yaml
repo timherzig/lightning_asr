@@ -1,0 +1,28 @@
+---
+model_name: 'emformer_test_1'
+model_type: 'emformer'
+
+training:
+  bs: 2
+  lr: 0.001
+  nw: 1
+  save_loc: ''
+
+emformer:
+  input_dim: 512
+  num_heads: 8
+  ffn_dim: 1024
+  num_layers: 2
+  segment_length: 2
+  dropout: 0.1
+  activation: 'relu'
+  left_context_length: 0
+  right_context_length: 0
+  max_memory_size: 0
+  weight_init_scale_strategy: 'depthwise'
+  tanh_on_mem: false
+  negative_inf: -1e8
+
+data:
+  datasets: 'commonvoice nan'
+  cv_loc: '/home/tim/Documents/dfki/datasets/...'
