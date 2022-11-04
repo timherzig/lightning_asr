@@ -7,7 +7,7 @@ training:
   bs: 2
   lr: 0.001
   nw: 1
-  save_loc: ''
+  save_loc: '/home/tim/Documents/dfki/personal_projects/lightning_asr/checkpoints_test/'
 
 emformer:
   input_dim: 512
@@ -25,5 +25,5 @@ emformer:
   negative_inf: -1e8
 
 data:
-  datasets: 'commonvoice nan'
-  cv_loc: '/home/tim/Documents/dfki/datasets/...'
+  datasets: 'commonvoice'
+  cv_loc: '/home/tim/Documents/dfki/datasets/CommonVoice/cv-corpus-11.0-2022-09-21/de/'

@@ -26,3 +26,34 @@ class Emformer_Model(pl.LightningModule):
             tanh_on_mem=model_args['tanh_on_mem'],
             negative_inf=model_args['negative_inf']
         )
+
+    def forward(self, x):
+        return self.emformer(x)
+
+    def training_step(self, batch, batch_idx):
+        x, x_lengths, y = batch
+        o, o_lengths = self.emformer(x, x_lengths)
+        ctc_loss = torch.nn.CTCLoss()
+        loss = ctc_loss(o, y, o_lengths, len(y))
+        self.log('train_loss', loss)
+        return loss
+
+    def validation_step(self, batch, batch_idx):
+        x, x_lengths, y = batch
+        o, o_lengths = self.emformer(x, x_lengths)
+        ctc_loss = torch.nn.CTCLoss()
+        loss = ctc_loss(o, y, o_lengths, len(y))
+        self.log('valid_loss', loss)
+        return loss
+
+    def test_step(self, batch, batch_idx):
+        x, x_lengths, y = batch
+        o, o_lengths = self.emformer(x, x_lengths)
+        ctc_loss = torch.nn.CTCLoss()
+        loss = ctc_loss(o, y, o_lengths, len(y))
+        self.log('test_loss', loss)
+        return loss
+
+    def configure_optimizers(self):
+        optimizer = torch.optim.Adam(self.parameters(), lr=self.lr)
+        return optimizer
