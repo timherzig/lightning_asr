@@ -18,7 +18,7 @@ def train(config, debug: False):
     elif config['model_type'] == 'wav2vec2': model == Emformer_Model(config['wav2vec2'], config['training']['bs'], config['training']['lr'])
 
     if 'commonvoice' in config['data']['datasets'].split(' '):
-        train_dataset = CommonVoiceDataset('train', config['data']['cv_loc'])
+        train_dataset = CommonVoiceDataset('train', config['data']['cv_loc'], n_rows=(500 if debug else None))
         train_dataloader = DataLoader(train_dataset, batch_size=config['training']['bs'], num_workers=config['training']['nw'], collate_fn=pad_batch)
 
         val_dataset = CommonVoiceDataset('dev', config['data']['cv_loc'])
