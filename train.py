@@ -24,7 +24,7 @@ def train(config, debug: False):
         val_dataset = CommonVoiceDataset('dev', config['data']['cv_loc'])
         val_dataloader = DataLoader(val_dataset, batch_size=config['training']['bs'], num_workers=config['training']['nw'], collate_fn=pad_batch)
 
-    trainer = pl.Trainer(accelerator='gpu', devices=[1], max_epochs=(1 if debug else 1000))
+    trainer = pl.Trainer(accelerator='gpu', devices=1, max_epochs=(1 if debug else 1000))
 
     trainer.fit(model, train_dataloader, val_dataloader)
 
