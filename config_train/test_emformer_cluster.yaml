@@ -1,4 +1,5 @@
 ---
+task: 'train'
 model_name: 'emformer_test_1'
 model_type: 'emformer'
 
@@ -6,7 +7,7 @@ training:
   bs: 2
   lr: 0.001
   nw: 1
-  save_loc: ''
+  save_loc: '/netscratch/herzig/emformer_train_1'
 
 emformer:
   input_dim: 512
@@ -24,5 +25,5 @@ emformer:
   negative_inf: -1e8
 
 data:
-  datasets: 'commonvoice nan'
-  cv_loc: '/home/tim/Documents/dfki/datasets/...'
+  datasets: 'commonvoice'
+  cv_loc: '/ds/audio/CommonVoiceCorpus10.0/cv-corpus-10.0-2022-07-04/de'
