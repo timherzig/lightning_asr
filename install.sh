@@ -5,8 +5,8 @@ DONEFILE="/netscratch/$USER/mnist_1/install_done_${SLURM_JOBID}"
 if [[ $SLURM_LOCALID == 0 ]]; then
   
   # put your install commands here:
-#   apt update
-#   apt install -y [...]
+  apt update
+  apt install -y ffmpeg
 #   apt clean
 #   conda install -y [...]
   pip install -r requirements.txt
