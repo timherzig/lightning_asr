@@ -28,11 +28,11 @@ class Emformer_Model(pl.LightningModule):
         )
 
     def forward(self, x):
-        return self.emformer(x)
+        return self.emformer.forward(x[0], x[1])
 
     def training_step(self, batch, batch_idx):
         x, x_lengths, y = batch
-        o, o_lengths = self.emformer(x, x_lengths)
+        o, o_lengths = self.emformer.forward(x, x_lengths)
         ctc_loss = torch.nn.CTCLoss()
         loss = ctc_loss(o, y, o_lengths, len(y))
         self.log('train_loss', loss)
@@ -40,7 +40,7 @@ class Emformer_Model(pl.LightningModule):
 
     def validation_step(self, batch, batch_idx):
         x, x_lengths, y = batch
-        o, o_lengths = self.emformer(x, x_lengths)
+        o, o_lengths = self.emformer.forward(x, x_lengths)
         ctc_loss = torch.nn.CTCLoss()
         loss = ctc_loss(o, y, o_lengths, len(y))
         self.log('valid_loss', loss)
@@ -48,7 +48,7 @@ class Emformer_Model(pl.LightningModule):
 
     def test_step(self, batch, batch_idx):
         x, x_lengths, y = batch
-        o, o_lengths = self.emformer(x, x_lengths)
+        o, o_lengths = self.emformer.forward(x, x_lengths)
         ctc_loss = torch.nn.CTCLoss()
         loss = ctc_loss(o, y, o_lengths, len(y))
         self.log('test_loss', loss)
