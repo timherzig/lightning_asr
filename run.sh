@@ -1,6 +1,7 @@
 #!/bin/bash
 
 srun \
+--job-name==emformer_train_test \
 --nodes==1 \
 --gpus=1 \
 --mem=42G \
