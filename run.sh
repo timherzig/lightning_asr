@@ -10,4 +10,3 @@ srun \
 --container-mounts=/ds:/ds,/netscratch:/netscratch,"`pwd`":"`pwd`" \
 --container-workdir="`pwd`" \
 install.sh python3 run.py -config 'config_train/test_emformer_cluster.yaml' -debug True
-echo 'running'
