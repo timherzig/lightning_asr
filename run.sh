@@ -1,8 +1,8 @@
 #!/bin/bash
 
 srun \
---job-name==emformer_train_test \
---nodes==1 \
+--job-name=emformer_train_test \
+--nodes=1 \
 --gpus=1 \
 --mem=24G \
 --time=0-01:00 \
