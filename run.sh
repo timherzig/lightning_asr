@@ -1,7 +1,7 @@
 #!/bin/bash
 
 srun \
---nodes==1 \
+--nodes=1 \
 --gpus=1 \
 --mem=42G \
 --time=0-01:00 \
