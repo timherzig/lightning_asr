@@ -15,7 +15,7 @@ def train(config, debug: False):
     print(f'Training: {config["model_name"]}\nDebug-mode: {"off" if not debug else "on"}')
 
     if config['model_type'] == 'emformer': model = Emformer_Model(config['emformer'], config['training']['bs'], config['training']['lr'])
-    elif config['model_type'] == 'wav2vec2': model == Emformer_Model(config['wav2vec2'], config['training']['bs'], config['training']['lr'])
+    elif config['model_type'] == 'wav2vec2': model = Emformer_Model(config['wav2vec2'], config['training']['bs'], config['training']['lr'])
 
     if 'commonvoice' in config['data']['datasets'].split(' '):
         train_dataset = CommonVoiceDataset('train', config['data']['cv_loc'], n_rows=(500 if debug else None))
